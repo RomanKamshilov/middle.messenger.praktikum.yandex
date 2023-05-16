@@ -14,21 +14,8 @@ export const components = {
     mainSection: new MainSection(),
 }
 
-function render(block: any) {
-    const root = document.getElementById('root');
-    root!.appendChild(block.getContent());
-    return root;
-}
-
-class ChatPage extends Block<ComponentsChatPage> {
-    constructor(props: ComponentsChatPage) {
+export class ChatPage extends Block<ComponentsChatPage> {
+    constructor(props: ComponentsChatPage = components) {
         super(tpl, props);
     }
 }
-
-const chatPage = (data: ComponentsChatPage) => {
-    const chats = new ChatPage(data);
-    render(chats);
-};
-
-export default chatPage;

@@ -24,21 +24,8 @@ export const component500 = {
     errorPage: new ErrorPage(page500Data),
 }
 
-class Page500 extends Block<Component500> {
-    constructor(props: Component500) {
+export class Page500 extends Block<Component500> {
+    constructor(props: Component500 = component500) {
         super(tpl, props);
     }
 }
-
-function render(block: any) {
-    const root = document.getElementById('root');
-    root!.appendChild(block.getContent());
-    return root;
-}
-
-const page500 = (data: Component500) => {
-    const errorPage = new Page500(data)
-    render(errorPage)
-};
-
-export default page500;

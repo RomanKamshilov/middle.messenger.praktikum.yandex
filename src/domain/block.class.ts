@@ -1,17 +1,16 @@
 import {BlockEvent} from './events.enum';
 import {EventBus} from './event-bus.class';
 import {uuidGenerator} from '../utils/uuid-generator.utils';
-import {isEqual} from "../utils/helpers";
 
-interface BlockMeta<Props extends object> {
+interface BlockMeta<Props extends Object> {
     tagName: string;
-    props: Props | Record<string, never>;
+    props: Props | {};
 }
 
 type Element = any;
 type EventCallback = (...args: any[]) => void;
 
-export class Block<Props extends object = any> {
+export class Block<Props extends Object = any> {
     props: Props;
     readonly children: { [key: string]: Block };
     private readonly id: string = uuidGenerator();
@@ -20,14 +19,14 @@ export class Block<Props extends object = any> {
     private readonly _meta: BlockMeta<Props>;
     private events: { [key: string]: EventCallback } = {};
 
-    constructor(tplCompile: (params: any) => string, propsAndChildren: Props) {
+    constructor(tplCompile: (params: any) => string, propsAndChildren: Props, tagName = 'div') {
         const {children, props} = this.getChildren(propsAndChildren);
 
         this.tplCompile = tplCompile;
         this.props = this._makePropsProxy(props);
         this.children = children;
         this._meta = {
-            tagName: 'div',
+            tagName,
             props
         };
 
@@ -65,6 +64,7 @@ export class Block<Props extends object = any> {
     }
 
     componentDidMount(oldProps: Props): void {
+
     }
 
     dispatchComponentDidMount(): void {
@@ -79,9 +79,7 @@ export class Block<Props extends object = any> {
     }
 
     componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-        if (!isEqual(oldProps, newProps)) {
-            return true;
-        }
+        return true;
     }
 
     setProps = (nextProps: Props): void => {
@@ -97,7 +95,7 @@ export class Block<Props extends object = any> {
         const {events = {}} = this.props;
 
         Object.entries(events).forEach(([eventName, eventHandler]) => {
-            this._element.addEventListener(eventName, eventHandler);
+            this._element.firstElementChild.addEventListener(eventName, eventHandler);
         });
     }
 
@@ -105,16 +103,16 @@ export class Block<Props extends object = any> {
         const {events = {}} = this.props;
 
         Object.entries(events).forEach(([eventName, eventHandler]) => {
-            this._element.removeEventListener(eventName, eventHandler);
+            this._element.firstElementChild?.removeEventListener(eventName, eventHandler);
         });
     }
 
     _render(): void {
+        this._removeEvents();
         const block = this.render();
         this._element.innerHTML = '';
         this._element.appendChild(block);
         this._addEvents();
-        this._removeEvents();
     }
 
     render(): any {
@@ -165,6 +163,10 @@ export class Block<Props extends object = any> {
 
     hide(): void {
         this._element.style.display = 'none';
+    }
+
+    destroy(): void {
+        this._removeEvents();
     }
 
     private getChildren(propsAndChildren: Props) {

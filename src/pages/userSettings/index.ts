@@ -177,22 +177,8 @@ interface UserSettingsPageProps {
     mainSection: MainSection,
 }
 
-class UserSettingsPage extends Block<UserSettingsPageProps> {
+export class UserSettingsPage extends Block<UserSettingsPageProps> {
     constructor(props: UserSettingsPageProps) {
         super(tpl, props);
     }
 }
-
-function render(block: any) {
-    const root = document.getElementById('root');
-    root!.appendChild(block.getContent());
-    return root;
-}
-
-const userSettingsPage = () => {
-    const userSettingsPage = new UserSettingsPage(data);
-    render(userSettingsPage);
-};
-
-export default userSettingsPage;
-
