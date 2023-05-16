@@ -3,8 +3,6 @@ type Indexed<T = unknown> = {
 };
 
 export function set<T extends Indexed | unknown>(object: T, path: string, value: unknown): T {
-
-
     if (typeof object !== "object" || object === null) {
         return object;
     }

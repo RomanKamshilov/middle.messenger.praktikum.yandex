@@ -117,20 +117,20 @@ function render(block: any) {
 
 const authorizationPage = (type: 'auth' | 'reg') => {
     const authPage = new AuthorizationPage(type === 'auth' ? dataAuthorization : dataRegistration);
-    document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("form__login__auth") as HTMLFormElement;
-        const validations: ValidationObject = {
-            first_name: (value: string) => /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*$/.test(value),
-            second_name: (value: string) => /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*$/.test(value),
-            login: (value: string) => /^[a-zA-Z][a-zA-Z0-9-_]{2,19}$/.test(value),
-            email: (value: string) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value),
-            password: (value: string) => /^(?=.*\d)(?=.*[A-Z]).{8,40}$/.test(value),
-            phone: (value: string) => /^\+?\d{10,15}$/.test(value),
-            message: (value: string) => value.trim() !== "",
-        };
-
-        new FormValidator(form, validations)
-    })
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const form = document.getElementById("form__login__auth") as HTMLFormElement;
+    //     const validations: ValidationObject = {
+    //         first_name: (value: string) => /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*$/.test(value),
+    //         second_name: (value: string) => /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*$/.test(value),
+    //         login: (value: string) => /^[a-zA-Z][a-zA-Z0-9-_]{2,19}$/.test(value),
+    //         email: (value: string) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value),
+    //         password: (value: string) => /^(?=.*\d)(?=.*[A-Z]).{8,40}$/.test(value),
+    //         phone: (value: string) => /^\+?\d{10,15}$/.test(value),
+    //         message: (value: string) => value.trim() !== "",
+    //     };
+    //
+    //     new FormValidator(form, validations)
+    // })
     render(authPage);
 }
 

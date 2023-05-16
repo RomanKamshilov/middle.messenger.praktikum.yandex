@@ -1,16 +1,17 @@
 import {BlockEvent} from './events.enum';
 import {EventBus} from './event-bus.class';
 import {uuidGenerator} from '../utils/uuid-generator.utils';
+import {isEqual} from "../utils/helpers";
 
-interface BlockMeta<Props extends Object> {
+interface BlockMeta<Props extends object> {
     tagName: string;
-    props: Props | {};
+    props: Props | Record<string, never>;
 }
 
 type Element = any;
 type EventCallback = (...args: any[]) => void;
 
-export class Block<Props extends Object = any> {
+export class Block<Props extends object = any> {
     props: Props;
     readonly children: { [key: string]: Block };
     private readonly id: string = uuidGenerator();
@@ -78,7 +79,9 @@ export class Block<Props extends Object = any> {
     }
 
     componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-        return true;
+        if (isEqual(oldProps, newProps)) {
+            return true;
+        }
     }
 
     setProps = (nextProps: Props): void => {
