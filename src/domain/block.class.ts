@@ -79,7 +79,7 @@ export class Block<Props extends object = any> {
     }
 
     componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-        if (isEqual(oldProps, newProps)) {
+        if (!isEqual(oldProps, newProps)) {
             return true;
         }
     }

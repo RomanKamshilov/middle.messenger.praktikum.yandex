@@ -26,6 +26,11 @@ class AuthorizationPage extends Block<AuthorizationPageProps> {
     constructor(propsAndChildren: AuthorizationPageProps) {
         super(tpl, propsAndChildren);
     }
+
+    componentDidMount(oldProps: AuthorizationPageProps) {
+        super.componentDidMount(oldProps);
+        
+    }
 }
 
 const inputsSignIn = {
