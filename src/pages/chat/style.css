@@ -11,8 +11,33 @@
     border-right: 1px solid #EAEAEA;
 }
 
+.leftSide__chat > div {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.leftSide__chat > div::-webkit-scrollbar {
+    width: 6px;
+    height: 0;
+    opacity: .5;
+}
+
+.leftSide__chat > div::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #efefef;
+}
+
+.leftSide__chat > div::-webkit-scrollbar-track {
+    border-radius: 6px;
+}
+
 .rightSide__chat {
     display: flex;
     width: calc(75% - 6px);
     height: 100%;
+}
+
+.rightSide__chat > div {
+    width: 100%;
 }

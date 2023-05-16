@@ -11,11 +11,11 @@ interface Person {
     selected: boolean;
 }
 
-interface DataPersons {
+export interface DataPersons {
     persons: Person[];
 }
 
-export const data: DataPersons = {
+export const dataPersons = {
     persons: [
         {
             photo: '',

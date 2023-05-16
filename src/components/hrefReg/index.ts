@@ -1,6 +1,6 @@
 import tpl from './tpl.hbs';
 import './style.css';
-import {Block} from '../../domain';
+import {Block, Router} from '../../domain';
 
 interface HrefRegProps {
     href: string;
@@ -9,6 +9,16 @@ interface HrefRegProps {
 
 export class HrefReg extends Block {
     constructor(props: HrefRegProps) {
-        super(tpl, props);
+        super(tpl, {
+            ...props, events: {
+                click: (e: Event) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    Router.instance?.go(`/${this.props.href}`);
+                }
+            }
+        });
     }
+
+
 }

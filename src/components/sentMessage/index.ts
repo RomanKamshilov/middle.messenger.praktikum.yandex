@@ -9,28 +9,14 @@ interface SentMessageProps {
     time?: string;
 }
 
-export const dataSentMessage = {
+const dataSentMessage = {
     text: 'Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
     check: checkSvg,
     time: '12:55',
 };
 
-class SentMessage extends Block<SentMessageProps> {
-    constructor(props: SentMessageProps) {
+export class SentMessage extends Block<SentMessageProps> {
+    constructor(props: SentMessageProps = dataSentMessage) {
         super(tpl, props);
     }
-}
-
-function render(block: Block) {
-    document.addEventListener('DOMContentLoaded', function () {
-        const contSentMes = document.getElementsByClassName('messagesSent__chat')[0];
-        contSentMes?.appendChild(block.getContent());
-        return contSentMes;
-    });
-
-}
-
-export const sentMessage = (data: SentMessageProps) => {
-    const contMes = new SentMessage(data);
-    render(contMes);
 }

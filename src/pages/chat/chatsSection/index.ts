@@ -1,29 +1,31 @@
 import tpl from './tpl.hbs';
 import './style.css';
 import * as arrowRight from '../../../../static/arrowRight.svg';
-import inputSearchComponent from "../../../components/inputSearch";
-import chatItem from "./chatsItem";
+import {InputSearch} from "../../../components/inputSearch";
+import {ChatItem} from "./chatsItem";
+import {Block} from "../../../domain";
 
-interface DataChatSection {
+export interface DataChatSection {
     profile: string;
     type: string;
     valueButton: string;
     arrowRight: typeof arrowRight;
-    inputSearchComponent: () => string;
-    chatItem: () => string;
+    inputSearchComponent: InputSearch;
+    chatItem: ChatItem;
 }
 
-const data: DataChatSection = {
+const dataChatSection = {
     profile: 'Профиль',
     type: 'button',
     valueButton: '',
     arrowRight: arrowRight,
-    inputSearchComponent,
-    chatItem,
+    inputSearchComponent: new InputSearch(),
+    chatItem: new ChatItem(),
 }
 
-const chatsSection = () => {
-    return tpl(data);
+export class ChatsSection extends Block<DataChatSection> {
+    constructor(props: DataChatSection = dataChatSection) {
+        super(tpl, props);
+    }
 }
 
-export default chatsSection;

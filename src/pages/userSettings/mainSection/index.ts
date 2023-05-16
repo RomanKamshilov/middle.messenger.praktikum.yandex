@@ -2,20 +2,21 @@ import tpl from './tpl.hbs';
 import './style.css';
 import * as noAvatar from '../../../static/noAvatar.svg';
 import {Block} from "../../../domain";
+import {InputSettings} from "../../../components/inputSettings";
+import {SimpleButton} from "../../../components/simpleButton";
 
 interface DataMainSectionProps {
     noAvatar?: typeof noAvatar;
     name?: string;
     normal?: boolean;
     buttonSettings?: Block;
-    input?: string;
+    input?: InputSettings;
     change?: boolean;
-    inputChange?: string;
+    inputChange?: InputSettings;
     changePassword?: boolean;
-    inputsChangePassword?: string;
-    simpleButton?: string;
+    inputsChangePassword?: InputSettings;
+    simpleButton?: SimpleButton;
 }
-
 
 export class MainSection extends Block<DataMainSectionProps> {
     constructor(props: DataMainSectionProps) {

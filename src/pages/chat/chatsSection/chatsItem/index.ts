@@ -1,9 +1,10 @@
-import tpl from  './tpl.hbs';
+import tpl from './tpl.hbs';
 import './style.css';
-import {data} from './data';
+import {DataPersons, dataPersons} from './data';
+import {Block} from "../../../../domain";
 
-const chatItem = () => {
-    return tpl(data);
-};
-
-export default chatItem;
+export class ChatItem extends Block<DataPersons> {
+    constructor(props: DataPersons = dataPersons) {
+        super(tpl, props);
+    }
+}

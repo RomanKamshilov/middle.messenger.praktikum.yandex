@@ -1,16 +1,18 @@
 import tpl from './tpl.hbs';
 import './style.css';
+import {Block} from "../../../../domain";
 
 interface DataNoChat {
     text: string;
 }
 
-const data: DataNoChat = {
+const dataNoChat = {
     text: 'Выберите чат чтобы отправить сообщение',
 };
 
-const noChat = () => {
-    return tpl(data);
-};
+export class NoChat extends Block<DataNoChat> {
+    constructor(props: DataNoChat = dataNoChat) {
+        super(tpl, props);
+    }
+}
 
-export default noChat;

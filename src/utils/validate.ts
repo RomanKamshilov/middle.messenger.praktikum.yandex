@@ -13,6 +13,7 @@ export class FormValidator {
         this.fields = Array.from(
             form.querySelectorAll("input, textarea")
         ) as (HTMLInputElement | HTMLTextAreaElement)[];
+
         this.validations = validations;
 
         this.fields.forEach((field) => {
@@ -45,7 +46,8 @@ export class FormValidator {
         const errorElem = field.nextElementSibling as HTMLElement;
         errorElem.innerText = error;
         errorElem.style.display = "block";
-        this.errors.push(error);
+        errorElem.style.color = "red";
+        errorElem.style.fontSize = "small";
     }
 
     private hideError(field: HTMLInputElement | HTMLTextAreaElement) {

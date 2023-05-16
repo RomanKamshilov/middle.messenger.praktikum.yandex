@@ -1,20 +1,21 @@
 import tpl from './tpl.hbs';
 import './style.css';
-import chat from './chat/index';
-import noChat from "./noChat/index";
+import {Chat} from './chat/index';
+import {NoChat} from "./noChat/index";
+import {Block} from "../../../domain";
 
 interface ComponentsMainSection {
-    chat: () => string;
-    noChat: () => string;
+    chat: Chat;
+    noChat: NoChat;
 }
-
+ 
 const components: ComponentsMainSection = {
-    chat,
-    noChat
+    chat: new Chat(),
+    noChat: new NoChat()
 };
 
-const mainSection = () => {
-    return tpl(components)
-};
-
-export default mainSection;
+export class MainSection extends Block<ComponentsMainSection> {
+    constructor(props: ComponentsMainSection = components) {
+        super(tpl, props);
+    }
+}

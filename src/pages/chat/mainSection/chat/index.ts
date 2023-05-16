@@ -1,13 +1,14 @@
 import tpl from './tpl.hbs';
 import './style.css'
-import {dataIncomingMessage, incomingMessage} from "../../../../components/incomingMessage";
-import {photoMessage, dataPhotoMessage} from "../../../../components/photoMessage";
+import {IncomingMessage} from "../../../../components/incomingMessage";
+import {PhotoMessage} from "../../../../components/photoMessage";
 import * as settings from '../../../../../static/settingsDots.svg';
 import * as clip from '../../../../../static/clip.svg';
 import * as sentArrow from '../../../../../static/sentArrow.svg';
 import * as noAvatar from '../../../../../static/noAvatar.svg';
-import {sentMessage, dataSentMessage} from "../../../../components/sentMessage";
-import {dataInputMessage, inputMessage} from "../../../../components/inputMessage";
+import {SentMessage} from "../../../../components/sentMessage";
+import {InputMessage} from "../../../../components/inputMessage";
+import {Block} from "../../../../domain";
 
 interface DataChat {
     photo?: boolean;
@@ -17,13 +18,13 @@ interface DataChat {
     date?: string;
     clipSvg?: typeof clip;
     sent?: typeof sentArrow;
-    incomingMessage?: void;
-    photoMessage?: void;
-    sentMessage?: void;
-    inputMessage?: void;
+    incomingMessage?: IncomingMessage;
+    photoMessage?: PhotoMessage;
+    sentMessage?: SentMessage;
+    inputMessage?: InputMessage;
 }
 
-const data: DataChat = {
+const chatData: DataChat = {
     photo: false,
     noAvatar: noAvatar,
     name: 'Вадим',
@@ -31,14 +32,14 @@ const data: DataChat = {
     date: '7 january',
     clipSvg: clip,
     sent: sentArrow,
-    incomingMessage: incomingMessage(dataIncomingMessage),
-    photoMessage: photoMessage(dataPhotoMessage),
-    sentMessage: sentMessage(dataSentMessage),
-    inputMessage: inputMessage(dataInputMessage),
+    incomingMessage: new IncomingMessage(),
+    photoMessage: new PhotoMessage(),
+    sentMessage: new SentMessage(),
+    inputMessage: new InputMessage(),
 };
 
-const chat = () => {
-    return tpl(data);
-};
-
-export default chat;
+export class Chat extends Block<DataChat> {
+    constructor(propsAndChildren: DataChat = chatData) {
+        super(tpl, propsAndChildren);
+    }
+}

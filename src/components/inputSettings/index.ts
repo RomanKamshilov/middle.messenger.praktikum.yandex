@@ -1,5 +1,6 @@
 import tpl from './tpl.hbs';
 import './style.css';
+import {Block} from "../../domain";
 
 interface Input {
     label: string;
@@ -21,9 +22,8 @@ interface InputsChangePassword {
     inputsChangePassword: Input[];
 }
 
-
-const inputSettings = (data:Inputs | InputsChange | InputsChangePassword) => {
-    return tpl(data);
+export class InputSettings extends Block<Inputs | InputsChange | InputsChangePassword> {
+    constructor(props: Inputs | InputsChange | InputsChangePassword) {
+        super(tpl, props);
+    }
 }
-
-export default inputSettings;

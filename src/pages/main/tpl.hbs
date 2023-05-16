@@ -1,0 +1,14 @@
+<div class="indexPage">
+    <h2>Главная страница навигации</h2>
+    <nav>
+        <ul class="index__ul">
+            {{#each pages}}
+                <li>
+                    <a id="{{link}}-button" href="{{link}}">{{title}}</a>
+                </li>
+            {{/each}}
+            {{{link}}}
+        </ul>
+    </nav>
+</div>
+

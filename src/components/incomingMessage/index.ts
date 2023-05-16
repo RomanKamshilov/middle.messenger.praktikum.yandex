@@ -11,7 +11,7 @@ interface IncomingMessageProps {
     time?: string;
 }
 
-export const dataIncomingMessage = {
+const dataIncomingMessage = {
     text: [
         {
             paragraph: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.',
@@ -23,22 +23,9 @@ export const dataIncomingMessage = {
     time: '11:56',
 };
 
-class IncomingMessage extends Block<IncomingMessageProps> {
-    constructor(props: IncomingMessageProps) {
+export class IncomingMessage extends Block<IncomingMessageProps> {
+    constructor(props: IncomingMessageProps = dataIncomingMessage) {
         super(tpl, props);
     }
 }
 
-function render(block: Block) {
-    document.addEventListener('DOMContentLoaded', function () {
-        const containerIncomingMessage = document.getElementsByClassName('incoming__chat')[0];
-        containerIncomingMessage?.insertBefore(block.getContent(), containerIncomingMessage.firstChild);
-        return containerIncomingMessage;
-    });
-
-}
-
-export const incomingMessage = (data: IncomingMessageProps) => {
-    const incomMes = new IncomingMessage(data);
-    render(incomMes);
-}

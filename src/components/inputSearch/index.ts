@@ -1,15 +1,23 @@
 import tpl from './tpl.hbs';
 import './style.css';
 import * as searchIcon from '/static/search.svg';
+import {Block} from "../../domain";
 
-const data ={
+interface InputSearchProps {
+    value?: string;
+    type?: string;
+    searchIcon?: typeof searchIcon;
+}
+
+const dataInputSearch = {
     value: 'Поиск',
     type: 'text',
     searchIcon,
 }
 
-const inputSearchComponent = () => {
-    return tpl(data);
-}
 
-export default inputSearchComponent;
+export class InputSearch extends Block<InputSearchProps> {
+    constructor(props: InputSearchProps = dataInputSearch) {
+        super(tpl, props);
+    }
+}
