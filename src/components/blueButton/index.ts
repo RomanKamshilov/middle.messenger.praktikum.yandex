@@ -5,6 +5,7 @@ import {Block} from '../../domain';
 
 interface ButtonProps {
     label?: string;
+    events?: any;
 }
 
 export class BlueButton extends Block<ButtonProps> {

@@ -4,6 +4,7 @@ import {InputLoginAuth} from "../../components/inputLoginAuth";
 import {BlueButton} from "../../components/blueButton";
 import {HrefReg} from "../../components/hrefReg";
 import {Block} from '../../domain';
+import {withStore} from "../../utils/Store";
 
 
 interface AuthorizationPageProps {
@@ -23,7 +24,13 @@ export class AuthorizationPage extends Block<AuthorizationPageProps> {
     constructor(propsAndChildren: AuthorizationPageProps = dataAuthorization) {
         super(tpl, propsAndChildren);
     }
+
+    // componentDidMount(oldProps: AuthorizationPageProps) {
+    //     authController.fetchUser()
+    // }
 }
+
+export const withUser = withStore((state) => ({...state.user}))
 
 export class RegistrationPage extends Block<AuthorizationPageProps> {
     constructor(propsAndChildren: AuthorizationPageProps = dataRegistration) {
@@ -107,6 +114,9 @@ export const dataRegistration = {
     titleSignUp: 'Регистрация',
     inputLoginReg: new InputLoginAuth(inputsSignUp),
     signUp: true,
-    blueButtonSignUp: new BlueButton({label: 'Зарегистрироваться'}),
+    blueButtonSignUp: new BlueButton({
+        label: 'Зарегистрироваться',
+
+    }),
     hrefRegSignUp: new HrefReg({href: '/sign-in', value: 'Войти'}),
 }

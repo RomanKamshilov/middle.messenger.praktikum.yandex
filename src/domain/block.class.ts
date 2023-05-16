@@ -1,6 +1,7 @@
 import {BlockEvent} from './events.enum';
 import {EventBus} from './event-bus.class';
 import {uuidGenerator} from '../utils/uuid-generator.utils';
+import {isEqual} from "../utils/helpers";
 
 interface BlockMeta<Props extends Object> {
     tagName: string;
@@ -79,7 +80,9 @@ export class Block<Props extends Object = any> {
     }
 
     componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-        return true;
+        if (!isEqual(oldProps, newProps)) {
+            return true;
+        }
     }
 
     setProps = (nextProps: Props): void => {

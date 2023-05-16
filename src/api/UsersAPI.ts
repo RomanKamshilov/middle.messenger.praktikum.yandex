@@ -43,7 +43,7 @@ export class UsersAPI extends BaseAPI {
     avatar(data: AvatarData) {
         return this.http.put('/profile/avatar', data)
     }
-
+ 
     password(data: PasswordData) {
         return this.http.put('/password', data)
     }

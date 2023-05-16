@@ -1,4 +1,4 @@
-import {AuthorizationPage, RegistrationPage} from '../pages/authorization';
+import {AuthorizationPage, RegistrationPage, withUser} from '../pages/authorization';
 import {ChatPage} from '../pages/chat';
 import {IndexData, Page} from '../domain';
 import {IndexPage} from '../pages/main';
@@ -34,6 +34,7 @@ export const INDEX_DATA: IndexData = {
         {
             title: 'Страница авторизации',
             link: 'sign-in',
+            // component: withUser(AuthorizationPage),
             component: AuthorizationPage,
         },
         {
