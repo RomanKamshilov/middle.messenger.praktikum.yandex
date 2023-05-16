@@ -178,7 +178,7 @@ interface UserSettingsPageProps {
 }
 
 export class UserSettingsPage extends Block<UserSettingsPageProps> {
-    constructor(props: UserSettingsPageProps) {
+    constructor(props: UserSettingsPageProps = data) {
         super(tpl, props);
     }
 }

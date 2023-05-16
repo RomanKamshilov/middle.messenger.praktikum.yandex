@@ -11,7 +11,7 @@ export const NOT_FOUND_PAGE: Page = {
     link: '404',
     component: Page400,
 };
- 
+
 export const ERROR_PAGE: Page = {
     title: 'Страница 5**',
     link: '500',
